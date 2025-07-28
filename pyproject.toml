@@ -1,0 +1,23 @@
+[project]
+name = "crewaisearcher"
+version = "0.1.0"
+description = "CrewAiSearcher using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.150.0,<1.0.0"
+]
+
+[project.scripts]
+crewaisearcher = "crewaisearcher.main:run"
+run_crew = "crewaisearcher.main:run"
+train = "crewaisearcher.main:train"
+replay = "crewaisearcher.main:replay"
+test = "crewaisearcher.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

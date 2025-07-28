@@ -1,0 +1,49 @@
+research_task:
+  description: >
+    Research and identify the best modifications and parts required to increase the horsepower of the {car} to {hp} HP.
+    Consider the most effective and reliable upgrade paths currently available in {current_year}.
+    Look for supporting information such as tuning strategies, part compatibility, and typical performance results.
+  expected_output: >
+    A detailed list of all modifications, parts, and systems required to help a {car} safely reach {hp} horsepower.
+    Include relevant keywords, brands, and any commonly used performance setups.
+  agent: researcher
+
+reporting_task:
+  description: >
+    Use the list of modifications and parts provided by the researcher to write a structured and complete report.
+    Expand each item into a full section that includes explanations, benefits, and estimated average prices in Brazilian Real (R$).
+    Include any important technical details, side notes, or considerations for each upgrade.
+  expected_output: >
+    A complete, well-organized performance upgrade report in markdown format (without '```').
+    Each section should cover one main category (e.g., engine internals, turbo, fuel system), with detailed info and estimated costs in R$.
+  agent: reporting_analyst
+
+translation_task:
+  description: >
+    Translate the full report written by the reporting_analyst into Brazilian Portuguese.
+    Maintain technical accuracy and clarity while preserving the original structure, automotive terminology, and formatting.
+    Do not omit, summarize, or change the original content — translate everything as-is, adapting naturally to Portuguese.
+  expected_output: >
+    A complete and faithful Portuguese version of the report, with correct automotive language and formatting.
+    Use the same markdown structure as the original and do not include any code blocks (no '```').
+  agent: translator
+
+html_formatting_task:
+  description: >
+    Take the final translated report in Portuguese provided by the translator agent and convert it into clean, semantic HTML.
+    The HTML must reflect the same structure and formatting as the original markdown, using proper HTML elements like <h1>, <h2>, <p>, <ul>, <li>, and <strong>.
+    Can include CSS or JavaScript. The result must be well-indented and ready for web display or embedding.
+  expected_output: >
+    A valid, beautiful and clean HTML and CSS document fragment containing all the translated content, with clear and readable structure using semantic tags.
+    Must be faithful to the original markdown hierarchy and formatting. The content must have be centralized on the page
+  agent: html_formatter
+
+file_writing_task:
+  description: >
+    Create an HTML file from the final formatted HTML content.
+    Ensure the file uses UTF-8 encoding and has a clear, descriptive filename such as {car}_{hp}_performance_report.html.
+    The file should include the basic <html>, <head>, and <body> structure.
+  expected_output: >
+    A fully formed .html file named based on the car and target horsepower, containing the complete report inside a valid HTML structure.
+    Ready to be downloaded, shared, or embedded.
+  agent: file_writer
